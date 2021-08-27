@@ -10,7 +10,7 @@ sharedMappings.register(path.join(__dirname, "../../tsconfig.json"), [
 
 module.exports = {
   output: {
-    uniqueName: "shell",
+    uniqueName: "mfe1",
     publicPath: "auto",
   },
   optimization: {
@@ -23,9 +23,11 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      // For hosts (please adjust)
-      remotes: {
-        mfe1: "mfe1@http://localhost:3000/remoteEntry.js",
+      // For remotes (please adjust)
+      name: "mfe1",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Module": "./projects/mfe1/src/app/cryptos/cryptos.module.ts",
       },
 
       shared: share({
